@@ -1,0 +1,34 @@
+{
+  "name": "opportunityiq",
+  "version": "1.0.0",
+  "description": "AI-Powered Lead-to-Proposal Intelligence &amp; Revenue Assurance Platform",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+  "start": "node server/server.js",
+  "dev": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mawitjr6/OpportunityIQ.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mawitjr6/OpportunityIQ/issues"
+  },
+  "homepage": "https://github.com/Mawitjr6/OpportunityIQ#readme",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "multer": "^2.5.0",
+    "mysql2": "^3.24.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
