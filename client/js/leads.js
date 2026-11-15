@@ -1,3 +1,7 @@
+// ======================
+// LOAD LEADS
+// ======================
+
 async function loadLeads() {
 
     try {
@@ -36,6 +40,47 @@ async function loadLeads() {
     }
 
 }
+
+// ======================
+// LOAD DOCUMENTS
+// ======================
+
+async function loadDocuments() {
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/documents"
+        );
+
+        const documents = await response.json();
+
+        const documentList =
+            document.getElementById("documentList");
+
+        documentList.innerHTML = "";
+
+        documents.forEach((doc) => {
+
+            documentList.innerHTML += `
+                <li>
+                    ${doc.file_name}
+                </li>
+            `;
+
+        });
+
+    } catch (error) {
+
+        console.error(error);
+
+    }
+
+}
+
+// ======================
+// CREATE LEAD
+// ======================
 
 document
     .getElementById("leadForm")
@@ -95,6 +140,10 @@ document
 
     });
 
+// ======================
+// UPLOAD DOCUMENT
+// ======================
+
 document
     .getElementById("uploadForm")
     .addEventListener("submit", async (e) => {
@@ -128,6 +177,8 @@ document
 
             console.log(result);
 
+            loadDocuments();
+
         } catch (error) {
 
             console.error(error);
@@ -138,4 +189,9 @@ document
 
     });
 
+// ======================
+// INITIAL PAGE LOAD
+// ======================
+
 loadLeads();
+loadDocuments();
