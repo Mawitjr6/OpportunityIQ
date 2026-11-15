@@ -10,59 +10,79 @@
 <body>
 
     <h1>OpportunityIQ Lead Management</h1>
-   <form id="leadForm">
 
-    <input
-        type="text"
-        id="company"
-        placeholder="Company Name"
-        required>
+    <h2>Add New Lead</h2>
 
-    <input
-        type="text"
-        id="contact"
-        placeholder="Contact Person">
+    <form id="leadForm">
 
-    <input
-        type="email"
-        id="email"
-        placeholder="Email">
+        <input
+            type="text"
+            id="company"
+            placeholder="Company Name"
+            required>
 
-    <button type="submit">
-        Save Lead
+        <input
+            type="text"
+            id="contact"
+            placeholder="Contact Person">
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email">
+
+        <input
+            type="text"
+            id="phone"
+            placeholder="Phone Number">
+
+        <input
+            type="text"
+            id="source"
+            placeholder="Lead Source">
+
+        <button type="submit">
+            Save Lead
+        </button>
+
+    </form>
+
+    <hr>
+
+    <h2>Upload Document</h2>
+
+    <form
+        id="uploadForm"
+        enctype="multipart/form-data">
+
+        <input
+            type="file"
+            id="document">
+
+        <button type="submit">
+            Upload
+        </button>
+
+    </form>
+
+    <hr>
+
+    <button onclick="loadLeads()">
+        Load Leads
     </button>
-
-</form>
-<hr>
-<!-- Upload Document Section -->
-<h2>Upload Document</h2>
-
-<form
-id="uploadForm"
-enctype="multipart/form-data">
-
-<input
-type="file"
-id="document">
-
-<button type="submit">
-Upload
-</button>
-
-</form>
-<hr>
-<!-- Load Leads Section -->
-    <button onclick="loadLeads()">Load Leads</button>
 
     <br><br>
 
     <table border="1">
+
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Company</th>
                 <th>Contact</th>
                 <th>Email</th>
+                <th>Phone</th>
+                <th>Source</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -70,6 +90,7 @@ Upload
         <tbody id="leadTableBody">
 
         </tbody>
+
     </table>
 
     <script src="js/leads.js"></script>

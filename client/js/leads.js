@@ -1,7 +1,10 @@
 async function loadLeads() {
+
     try {
-        const response =
-            await fetch("http://localhost:5000/api/leads");
+
+        const response = await fetch(
+            "http://localhost:5000/api/leads"
+        );
 
         const leads = await response.json();
 
@@ -18,54 +21,121 @@ async function loadLeads() {
                     <td>${lead.company_name}</td>
                     <td>${lead.contact_person}</td>
                     <td>${lead.email}</td>
+                    <td>${lead.phone || ""}</td>
+                    <td>${lead.source || ""}</td>
                     <td>${lead.status}</td>
                 </tr>
             `;
+
         });
 
     } catch (error) {
+
         console.error(error);
+
     }
+
 }
 
 document
-.getElementById("leadForm")
-.addEventListener("submit", async (e) => {
+    .getElementById("leadForm")
+    .addEventListener("submit", async (e) => {
 
-    e.preventDefault();
+        e.preventDefault();
 
- const lead = {
-    company_name: document.getElementById("company").value,
-    contact_person: document.getElementById("contact").value,
-    email: document.getElementById("email").value,
+        const lead = {
 
-    phone: "",
+            company_name:
+                document.getElementById("company").value,
 
-    source: "Manual Entry",
+            contact_person:
+                document.getElementById("contact").value,
 
-    owner: "Mawit",
+            email:
+                document.getElementById("email").value,
 
-    status: "New"
-};
+            phone:
+                document.getElementById("phone").value,
 
-    await fetch(
-        "http://localhost:5000/api/leads",
-        {
-            method: "POST",
+            source:
+                document.getElementById("source").value,
 
-            headers: {
-                "Content-Type": "application/json"
-            },
+            owner: "Mawit",
 
-            body: JSON.stringify(lead)
+            status: "New"
+
+        };
+
+        try {
+
+            await fetch(
+                "http://localhost:5000/api/leads",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify(lead)
+                }
+            );
+
+            document
+                .getElementById("leadForm")
+                .reset();
+
+            loadLeads();
+
+        } catch (error) {
+
+            console.error(error);
+
         }
-    );
 
-    document
-        .getElementById("leadForm")
-        .reset();
+    });
 
-    loadLeads();
-});
+document
+    .getElementById("uploadForm")
+    .addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const fileInput =
+            document.getElementById("document");
+
+        const formData = new FormData();
+
+        formData.append(
+            "document",
+            fileInput.files[0]
+        );
+
+        try {
+
+            const response = await fetch(
+                "http://localhost:5000/api/documents/upload",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+            const result =
+                await response.json();
+
+            alert("File uploaded successfully!");
+
+            console.log(result);
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Upload failed");
+
+        }
+
+    });
 
 loadLeads();
