@@ -1,0 +1,5 @@
+[33m29aa146[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/lead-management[m[33m)[m Remove uploaded files from repository
+[33mc887ba8[m Implement document analysis engine
+[33mc3412b6[m Install PDF text extraction library
+[33md7a684f[m[33m ([m[1;31morigin/feature/lead-management[m[33m)[m Install PDF text extraction library
+[33mbcc8962[m Add document repository viewer

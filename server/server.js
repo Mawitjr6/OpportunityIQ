@@ -4,6 +4,7 @@ const db = require("./config/db");
 
 const leadRoutes = require("./routes/leadRoutes");
 const documentRoutes = require("./routes/documentRoutes");
+const aiRoutes = require("./routes/aiRoutes");
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use("/api/leads", leadRoutes);
 app.use("/api/documents", documentRoutes);
+app.use("/api/ai", aiRoutes);
 
 app.get("/", (req, res) => {
   res.json({

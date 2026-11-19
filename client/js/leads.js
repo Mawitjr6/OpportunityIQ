@@ -77,6 +77,47 @@ async function loadDocuments() {
     }
 
 }
+async function runAnalysis() {
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/ai/extract",
+            {
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    filePath:
+                    "server/uploads/1795097853073-test.pdf.pdf"
+                })
+            }
+        );
+
+        const result =
+            await response.json();
+
+        document.getElementById(
+            "analysisResult"
+        ).textContent =
+            JSON.stringify(
+                result.analysis,
+                null,
+                2
+            );
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert("Analysis failed");
+
+    }
+
+}
 
 // ======================
 // CREATE LEAD
