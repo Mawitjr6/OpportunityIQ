@@ -37,11 +37,36 @@ function analyzeText(text) {
     }
 
     return {
-        summary: text.substring(0, 300),
+
+        problemStatement:
+            "The document describes business requirements that require further analysis.",
+
+        objectives: [
+            "Understand client needs",
+            "Document business requirements"
+        ],
+
+        summary:
+            text.substring(0, 300),
+
         requirements,
+
+        constraints: [
+            "Budget and timeline not yet confirmed"
+        ],
+
         risks,
-        questions
+
+        questions,
+
+        recommendations: [
+            "Conduct requirements workshop",
+            "Confirm scope and budget",
+            "Validate stakeholder expectations"
+        ]
+
     };
+
 }
 
 module.exports = {
