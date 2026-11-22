@@ -1,4 +1,10 @@
 const {
+    generateBrief
+} = require("../services/briefService");
+const {
+    calculateScore
+} = require("../services/scoringService");
+const {
     analyzeText
 } = require("../services/analysisService");
 const express = require("express");
@@ -15,13 +21,23 @@ router.post("/extract", async (req, res) => {
         const text = await extractPdfText(
             req.body.filePath
         );
-
-        const analysis =
+const analysis =
     analyzeText(text);
+
+const scoring =
+    calculateScore(analysis);
+
+const brief =
+    generateBrief(
+        analysis,
+        scoring
+    );
 
 res.json({
     success: true,
-    analysis
+    analysis,
+    scoring,
+    brief
 });
 
     } catch (error) {
